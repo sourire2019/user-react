@@ -19,19 +19,17 @@ export default class CreateActivityForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      depentment: props.value.depentment,
       name: props.value.name,
-      type: props.value.type,
-      ca: props.value.ca,
+      age: props.value.age,
+      address: props.value.address,
     };
     this.submit = this.submit.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      depentment: nextProps.value.depentment,
       name: nextProps.value.name,
-      type: nextProps.value.type,
-      ca: nextProps.value.ca,
+      age: nextProps.value.age,
+      address: nextProps.value.address,
     });
   }
 
@@ -48,17 +46,8 @@ export default class CreateActivityForm extends Component {
         <IceContainer style={styles.container}>
           <div>
             <Row style={styles.formItem}>
-              <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  组织的部门信息：
-              </Col>
-
-              <Col s="12" l="10">
-                {this.state.depentment}
-              </Col>
-            </Row>
-            <Row style={styles.formItem}>
-              <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  名称：
+              <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  名字：
               </Col>
 
               <Col s="12" l="10">
@@ -66,27 +55,26 @@ export default class CreateActivityForm extends Component {
               </Col>
             </Row>
             <Row style={styles.formItem}>
-              <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  类型：
+              <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  年龄：
               </Col>
 
               <Col s="12" l="10">
-                {this.state.type}
+                {this.state.age}
               </Col>
             </Row>
             <Row style={styles.formItem}>
-              <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                CA服务器名称：
+              <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  住址：
               </Col>
 
               <Col s="12" l="10">
-                {this.state.ca}
+                {this.state.address}
               </Col>
             </Row>
 
-
             <Row style={styles.btns}>
-              <Col xxs="6" s="4" l="4" style={styles.formLabel}>
+              <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                 {' '}
               </Col>
               <Col s="12" l="10">

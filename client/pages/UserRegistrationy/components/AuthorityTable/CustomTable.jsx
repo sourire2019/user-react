@@ -15,6 +15,8 @@ export default class Home extends Component {
       dialog: false,
       message: {},
       id: null,
+      dialog1: false,
+      lock: '',
     };
     this.showtasklist = this.showtasklist.bind(this);
   }
@@ -30,14 +32,25 @@ export default class Home extends Component {
       dialog: false,
     });
   };
+  hideDialog1 = () => {
+    this.setState({
+      dialog1: false,
+    });
+  };
 
   showtasklist = async (index) => {
-    const id = this.state.dataSource[index].id.toString();
-    const result = await Userinformation(id);
+    const result = await Userinformation(index);
     this.setState({
       dialog: true,
       message: result,
-      id,
+      id: index,
+    });
+  }
+  showpassword = (index) => {
+    const result = this.state.dataSource[index].password;
+    this.setState({
+      dialog1: true,
+      lock: result,
     });
   }
   renderOper = (record, index) => {
@@ -47,7 +60,13 @@ export default class Home extends Component {
       </div>
     );
   };
-
+  renderpass = (record, index) => {
+    return (
+      <div style={styles.oper}>
+        <IceIcon size="small" type="lock" style={styles.editIcon} onClick={() => { this.showpassword(index); }} />
+      </div>
+    );
+  }
   render() {
     return (
       <div style={styles.tableContainer}>
@@ -56,8 +75,13 @@ export default class Home extends Component {
           hasBorder={false}
           className="custom-table"
         >
-          <Table.Column width={200} title="编号" dataIndex="id" />
-          <Table.Column width={100} title="查看" cell={this.renderOper} align="center" />
+          <Table.Column width={200} title="组织部门信息" dataIndex="depentment" />
+          <Table.Column width={200} title="名称" dataIndex="name" />
+          <Table.Column width={200} title="类型" dataIndex="type" />
+          <Table.Column width={200} title="CA服务器名称" dataIndex="ca" />
+          <Table.Column width={200} title="状态" dataIndex="status" cell={row => (row == '0' ? ('等待管理员登记') : ('登记成功'))} />
+          <Table.Column width={200} title="密码" cell={this.renderpass} align="center" />
+          <Table.Column width={100} title="操作" cell={this.renderOper} align="center" />
         </Table>
         <Dialog
           className="simple-form-dialog"
@@ -70,6 +94,18 @@ export default class Home extends Component {
           visible={this.state.dialog}
         >
           <CreateActivityForm value={this.state.message} id={this.state.id} />
+        </Dialog>
+        <Dialog
+          className="simple-form-dialog"
+          style={{ width: '1000px' }}
+          autoFocus
+          footerAlign="center"
+          title="密码"
+          onClose={this.hideDialog1}
+          isFullScreen
+          visible={this.state.dialog1}
+        >
+          {this.state.lock}
         </Dialog>
       </div>
     );

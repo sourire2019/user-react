@@ -27,9 +27,9 @@ export default class UserLogin extends Component {
       password: 'admin',
       part: 'enterprise',
       value: {
-        account: undefined,
-        password: undefined,
-        part: undefined,
+        account: 'Admin',
+        password: 'admin',
+        part: 'enterprise',
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,7 +40,7 @@ export default class UserLogin extends Component {
 
 
   handleSubmit = async () => {
-    const result = await login(this.state);
+    const result = await login(this.state.value);
     if (result.message === 'success') {
       cookie.save('status', '1');
       window.location.href = `${window.location.origin}/#/`;
@@ -80,6 +80,7 @@ export default class UserLogin extends Component {
           <div style={styles.formContainer}>
             <h4 style={styles.formTitle}>登录</h4>
             <IceFormBinderWrapper
+              value={this.state.value}
               ref="form"
             >
               <div style={styles.formItems}>
@@ -129,8 +130,6 @@ export default class UserLogin extends Component {
                     <IceFormError name="password" />
                   </Col>
                 </Row>
-
-
                 <Row style={styles.formItem}>
                   <Button
                     type="primary"

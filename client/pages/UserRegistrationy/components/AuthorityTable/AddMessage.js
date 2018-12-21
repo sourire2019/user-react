@@ -15,8 +15,8 @@ import IceIcon from '@icedesign/icon';
 
 const { addmessage, calist } = Operation;
 const { Row, Col } = Grid;
-export default class CreateActivityForm extends Component {
-  static displayName = 'CreateActivityForm';
+export default class AddMessage extends Component {
+  static displayName = 'AddMessage';
   static defaultProps = {};
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ export default class CreateActivityForm extends Component {
         depentment: 'org1.depentment1',
         name: '',
         type: '',
-        password: '',
+        userpassword: '',
         ca: '',
       },
     };
@@ -53,31 +53,11 @@ export default class CreateActivityForm extends Component {
         depentment: this.state.depentment,
         name: '',
         type: '',
-        password: '',
+        userpassword: '',
         ca: '',
       },
     });
   };
-
-  randomWord =(randomFlag, min, max) => {
-    let str = '',
-      range = min,
-      arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        '-', '.', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', ':', '<', '>', '?'];
-
-    if (randomFlag) {
-      range = Math.round(Math.random() * (max - min)) + min;// 任意长度
-    }
-    for (let i = 0; i < range; i++) {
-      const pos = Math.round(Math.random() * (arr.length - 1));
-      str += arr[pos];
-    }
-    return str;
-  }
   submit = () => {
     const athis = this;
     this.formRef.validateAll(async (error, value) => {
@@ -88,9 +68,6 @@ export default class CreateActivityForm extends Component {
         operation.status = '0';
         operation.ca = athis.ca.value;
         operation.type = athis.type.value;
-        if (operation.password == '') {
-          operation.password = athis.randomWord(true, 6, 12);
-        }
         const result = await addmessage(operation);
         if (result.message === 'success') {
           window.location.reload();
@@ -189,7 +166,7 @@ export default class CreateActivityForm extends Component {
                   密码：
                 </Col>
                 <Col s="12" l="10">
-                  <IceFormBinder name="password" required message="必填">
+                  <IceFormBinder name="userpassword">
                     <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
                   </IceFormBinder>
                   <IceIcon
@@ -200,7 +177,7 @@ export default class CreateActivityForm extends Component {
                   />
                 </Col>
                 <Col>
-                  <IceFormError name="password" />
+                  <IceFormError name="userpassword" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>

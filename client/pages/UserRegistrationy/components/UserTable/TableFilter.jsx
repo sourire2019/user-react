@@ -25,16 +25,16 @@ export default class TableFilter extends Component {
   render() {
     return (
       <div style={styles.tableFilter}>
-        <div style={styles.title}>用户登记任务</div>
+        <div style={styles.title}>任务</div>
         <Button type="primary" style={styles.submitButton} onClick={() => { this.addpig(); }}>
-          用户登记
+          账号注册
         </Button>
         <Dialog
           className="simple-form-dialog"
           style={{ width: '1000px' }}
           autoFocus
           footerAlign="center"
-          title="用户登记"
+          title="账号注册"
           onClose={this.hideDialog}
           isFullScreen
           visible={this.state.dialog}

@@ -26,10 +26,20 @@ const headerMenuConfig = [
 
 const asideMenuConfig = [
   {
-    name: '用户管理',
+    name: '账号管理',
     path: '/user',
     icon: 'yonghu',
-    children: [{ name: '用户登记', path: '/user/registration' }],
+    children: [
+      { name: '账号注册', path: '/user/registration' },
+      { name: '账号登记', path: '/user/register' },
+    ],
+  }, {
+    name: '配置管理',
+    path: '/configure',
+    icon: 'shezhi',
+    children: [
+      { name: 'CA服务器', path: '/configure/CA' },
+    ],
   },
 ];
 
