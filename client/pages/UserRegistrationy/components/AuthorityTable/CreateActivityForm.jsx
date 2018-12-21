@@ -91,7 +91,7 @@ export default class CreateActivityForm extends Component {
               </Col>
               <Col s="12" l="10">
                 <Button type="primary" onClick={this.submit}>
-                    登记
+                    确定
                 </Button>
               </Col>
             </Row>
