@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import './styles.css';
+import { Button, Dialog } from '@icedesign/base';
+import UserLogin from './UserLogin';
 
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
@@ -11,10 +13,39 @@ export default class TableFilter extends Component {
       dialog: false,
     };
   }
+  addpig = () => {
+    this.setState({
+      dialog: true,
+    });
+  }
+  hideDialog = () => {
+    this.setState({
+      dialog: false,
+    });
+  };
+
   render() {
     return (
       <div style={styles.tableFilter}>
         <div style={styles.title}>登记</div>
+        <div style={styles.submitButton}>
+          <Button type="primary" onClick={() => { this.addpig(); }}>
+            账号登记
+          </Button>
+        </div>
+
+        <Dialog
+          className="simple-form-dialog"
+          style={{ width: '1000px' }}
+          autoFocus
+          footerAlign="center"
+          title="账号登记"
+          onClose={this.hideDialog}
+          isFullScreen
+          visible={this.state.dialog}
+        >
+          <UserLogin />
+        </Dialog>
       </div>
     );
   }

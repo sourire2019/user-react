@@ -1,7 +1,7 @@
 import cookie from 'react-cookies';
 // import { get, post } from './request.js';
 
-
+// 生成随机密码
 const randomWord = (randomFlag, min, max) => {
   let str = '',
     range = min,
@@ -121,6 +121,31 @@ const calist = () => {
   return result;
 };
 
+
+// 查看用户注册信息
+
+const registerlist = () => {
+  const reg = cookie.load('reg');
+  const result = [];
+  if (reg != undefined) {
+    return reg;
+  }
+  return result;
+};
+const userRegister = (value) => {
+  const reg = cookie.load('reg');
+  const result = [];
+  if (reg != undefined) {
+    reg.push(value);
+    cookie.save('reg', reg);
+  } else {
+    result.push(value);
+    cookie.save('reg', result);
+  }
+  return ({
+    message: 'success',
+  });
+};
 export default {
   login,
   tasklist,
@@ -130,4 +155,6 @@ export default {
   addmessage,
   addCA,
   calist,
+  registerlist,
+  userRegister,
 };

@@ -1,3 +1,3 @@
-import TableFilter from './TableFilter';
+import AuthorityTable from './AuthorityTable';
 
-export default TableFilter;
+export default AuthorityTable;
