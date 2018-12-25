@@ -189,7 +189,7 @@ export default class CreateActivityForm extends Component {
                   密码：
                 </Col>
                 <Col s="12" l="10">
-                  <IceFormBinder name="password" required message="必填">
+                  <IceFormBinder name="password">
                     <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
                   </IceFormBinder>
                   <IceIcon
@@ -198,9 +198,6 @@ export default class CreateActivityForm extends Component {
                     style={styles.inputIcon}
                     onClick={this.showpassword}
                   />
-                </Col>
-                <Col>
-                  <IceFormError name="password" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>
