@@ -28,7 +28,7 @@ export default class CreateActivityForm extends Component {
         depentment: 'org1.depentment1',
         name: '',
         type: '',
-        password: '',
+        userpassword: '',
         ca: '',
       },
     };
@@ -53,31 +53,12 @@ export default class CreateActivityForm extends Component {
         depentment: this.state.depentment,
         name: '',
         type: '',
-        password: '',
+        userpassword: '',
         ca: '',
       },
     });
   };
 
-  randomWord =(randomFlag, min, max) => {
-    let str = '',
-      range = min,
-      arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        '-', '.', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', ':', '<', '>', '?'];
-
-    if (randomFlag) {
-      range = Math.round(Math.random() * (max - min)) + min;// 任意长度
-    }
-    for (let i = 0; i < range; i++) {
-      const pos = Math.round(Math.random() * (arr.length - 1));
-      str += arr[pos];
-    }
-    return str;
-  }
   submit = () => {
     const athis = this;
     this.formRef.validateAll(async (error, value) => {
@@ -88,9 +69,6 @@ export default class CreateActivityForm extends Component {
         operation.status = '0';
         operation.ca = athis.ca.value;
         operation.type = athis.type.value;
-        if (operation.password == '') {
-          operation.password = athis.randomWord(true, 6, 12);
-        }
         const result = await addmessage(operation);
         if (result.message === 'success') {
           window.location.reload();
@@ -139,23 +117,6 @@ export default class CreateActivityForm extends Component {
             <div>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  组织部门信息：
-                </Col>
-
-                <Col s="12" l="10" >
-                  <IceFormBinder
-                    name="depentment"
-                    required
-                    message="部门信息必须填写"
-                  >
-                    <Input style={{ width: '100%' }} value={this.state.depentment} onChange={this.dependment} />
-                  </IceFormBinder>
-                  <IceFormError name="depentment" />
-                </Col>
-              </Row>
-
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="4" l="4" style={styles.formLabel}>
                   名称：
                 </Col>
 
@@ -168,6 +129,22 @@ export default class CreateActivityForm extends Component {
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
                   <IceFormError name="name" />
+                </Col>
+              </Row>
+              <Row style={styles.formItem}>
+                <Col xxs="6" s="4" l="4" style={styles.formLabel}>
+                  密码：
+                </Col>
+                <Col s="12" l="10">
+                  <IceFormBinder name="userpassword">
+                    <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
+                  </IceFormBinder>
+                  <IceIcon
+                    type="eye"
+                    size="small"
+                    style={styles.inputIcon}
+                    onClick={this.showpassword}
+                  />
                 </Col>
               </Row>
               <Row style={styles.formItem}>
@@ -186,18 +163,18 @@ export default class CreateActivityForm extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  密码：
+                  组织部门信息：
                 </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="password">
-                    <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
+
+                <Col s="12" l="10" >
+                  <IceFormBinder
+                    name="depentment"
+                    required
+                    message="部门信息必须填写"
+                  >
+                    <Input style={{ width: '100%' }} value={this.state.depentment} onChange={this.dependment} />
                   </IceFormBinder>
-                  <IceIcon
-                    type="eye"
-                    size="small"
-                    style={styles.inputIcon}
-                    onClick={this.showpassword}
-                  />
+                  <IceFormError name="depentment" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>
