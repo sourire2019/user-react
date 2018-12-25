@@ -85,16 +85,16 @@ export default class CreateActivityForm extends Component {
             <div>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  姓名：
+                  名称：
                 </Col>
 
                 <Col s="12" l="10">
                   <IceFormBinder
                     name="name"
                     required
-                    message="姓名必须填写"
+                    message="名称必须填写"
                   >
-                    <Input style={{ width: '100%' }} placeholder="名字" />
+                    <Input style={{ width: '100%' }} placeholder="名称" />
                   </IceFormBinder>
                   <IceFormError name="name" />
                 </Col>
@@ -107,7 +107,7 @@ export default class CreateActivityForm extends Component {
                   <IceFormBinder
                     name="password"
                     required
-                    message="密码"
+                    message="密码必填"
                   >
                     <Input htmlType="password" placeholder="密码" style={{ width: '100%' }} />
                   </IceFormBinder>

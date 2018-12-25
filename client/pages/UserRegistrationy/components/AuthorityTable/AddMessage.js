@@ -116,23 +116,6 @@ export default class AddMessage extends Component {
             <div>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  组织部门信息：
-                </Col>
-
-                <Col s="12" l="10" >
-                  <IceFormBinder
-                    name="depentment"
-                    required
-                    message="部门信息必须填写"
-                  >
-                    <Input style={{ width: '100%' }} value={this.state.depentment} onChange={this.dependment} />
-                  </IceFormBinder>
-                  <IceFormError name="depentment" />
-                </Col>
-              </Row>
-
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="4" l="4" style={styles.formLabel}>
                   名称：
                 </Col>
 
@@ -145,6 +128,22 @@ export default class AddMessage extends Component {
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
                   <IceFormError name="name" />
+                </Col>
+              </Row>
+              <Row style={styles.formItem}>
+                <Col xxs="6" s="4" l="4" style={styles.formLabel}>
+                  密码：
+                </Col>
+                <Col s="12" l="10">
+                  <IceFormBinder name="userpassword">
+                    <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
+                  </IceFormBinder>
+                  <IceIcon
+                    type="eye"
+                    size="small"
+                    style={styles.inputIcon}
+                    onClick={this.showpassword}
+                  />
                 </Col>
               </Row>
               <Row style={styles.formItem}>
@@ -163,21 +162,18 @@ export default class AddMessage extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="4" l="4" style={styles.formLabel}>
-                  密码：
+                  组织部门信息：
                 </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder name="userpassword">
-                    <Input style={{ width: '90%' }} htmlType={this.state.status == true ? ('text') : ('password')} ref={e => (this.password = e)} />
+
+                <Col s="12" l="10" >
+                  <IceFormBinder
+                    name="depentment"
+                    required
+                    message="部门信息必须填写"
+                  >
+                    <Input style={{ width: '100%' }} value={this.state.depentment} onChange={this.dependment} />
                   </IceFormBinder>
-                  <IceIcon
-                    type="eye"
-                    size="small"
-                    style={styles.inputIcon}
-                    onClick={this.showpassword}
-                  />
-                </Col>
-                <Col>
-                  <IceFormError name="userpassword" />
+                  <IceFormError name="depentment" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>

@@ -51,12 +51,12 @@ export default class Home extends Component {
           hasBorder={false}
           className="custom-table"
         >
-          <Table.Column width={200} title="组织部门信息" dataIndex="depentment" />
-          <Table.Column width={200} title="名称" dataIndex="name" />
-          <Table.Column width={200} title="类型" dataIndex="type" />
-          <Table.Column width={200} title="CA服务器名称" dataIndex="ca" />
-          <Table.Column width={200} title="状态" dataIndex="status" cell={row => (row == '0' ? ('等待管理员登记') : ('登记成功'))} />
-          <Table.Column width={200} title="密码" cell={this.renderpass} align="center" />
+          <Table.Column width={100} title="组织部门信息" dataIndex="depentment" />
+          <Table.Column width={100} title="名称" dataIndex="name" />
+          <Table.Column width={100} title="类型" dataIndex="type" />
+          <Table.Column width={100} title="CA服务器名称" dataIndex="ca" />
+          <Table.Column width={100} title="状态" dataIndex="status" cell={row => (row == '0' ? ('等待管理员注册') : ('注册成功'))} />
+          <Table.Column width={100} title="密码" cell={this.renderpass} align="center" />
         </Table>
         <Dialog
           className="simple-form-dialog"
