@@ -2,11 +2,13 @@
   "name": "ice-koa-react-scaffold",
   "version": "1.0.0",
   "description": "",
+  "private": true,
+  "homepage": ".",
   "main": "server/index.js",
   "scripts": {
     "client": "ice dev --project-type=node",
     "server": "nodemon server/app.js",
-    "start": "npm run client & npm run server",
+    "start": "npm run client",
     "build": "ice build --project-type=node",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
